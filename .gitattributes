@@ -1,0 +1,34 @@
+# Normalize line endings: text files are stored with LF in the repository
+# and checked out with LF on all platforms, so Linux containers and CI see
+# the same bytes as Windows and macOS developers.
+* text=auto eol=lf
+
+# Windows-only scripts need CRLF to run correctly.
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+*.ps1  text eol=crlf
+
+# Shell scripts and container files must stay LF.
+*.sh        text eol=lf
+Dockerfile  text eol=lf
+*.dockerfile text eol=lf
+
+# Binary files: never normalize or diff as text.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.webp  binary
+*.pdf   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.zip   binary
+*.gz    binary
+*.parquet binary
+
+# Lockfiles: marked as generated (collapsed by default in GitHub PR views)
+# but still diffable, so dependency changes remain reviewable.
+package-lock.json linguist-generated=true
